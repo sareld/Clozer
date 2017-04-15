@@ -56,6 +56,7 @@ public class mainFragment extends Fragment
     Button sndButton;
     EditText msgTxt;
     Context context;
+    Profile profile;
 
     public mainFragment() {
         // Required empty public constructor
@@ -77,9 +78,9 @@ public class mainFragment extends Fragment
         msgTxt = (EditText) rootView.findViewById(R.id.editText);
 
         Messages = new ArrayList<String>();
-        Profile profile = Profile.getCurrentProfile();
+        profile = Profile.getCurrentProfile();
 
-        Messages.add(profile.getName());
+        //Messages.add(profile.getName());
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.list_view, Messages);
         lstView.setAdapter(adapter);
 
@@ -151,7 +152,7 @@ public class mainFragment extends Fragment
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        publish("Hello World samsung");
+        publish(profile.getName());
         subscribe();
     }
 
@@ -198,6 +199,7 @@ public class mainFragment extends Fragment
                 .build();
 
         Nearby.Messages.subscribe(mGoogleApiClient, mMessageListener, options);
+
     }
 
     private void unsubscribe() {
