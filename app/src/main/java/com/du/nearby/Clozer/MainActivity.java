@@ -45,10 +45,10 @@ public class MainActivity extends FragmentActivity{
         }else {
             Log.d(TAG, "setContentView" );
 
-            loginFragment = new loginFragment();
+            BlankFragment blankFragment= new BlankFragment();
 
             getSupportFragmentManager().beginTransaction()
-                    .add(android.R.id.content, loginFragment).commit();
+                    .add(android.R.id.content, blankFragment).commit();
 
         /*
             final ListView lstView = (ListView) findViewById(R.id.listView);
