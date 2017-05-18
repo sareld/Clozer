@@ -2,10 +2,13 @@ package com.du.nearby.Clozer;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -31,6 +34,8 @@ import com.google.android.gms.nearby.messages.SubscribeOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.value;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,8 +54,9 @@ public class mainFragment extends Fragment
     MessageListener mMessageListener;
     List<String> Messages;
 
+
     ListView lstView;
-    Button sndButton;
+    Button AddGroupButton;
     EditText msgTxt;
     Context context;
     Profile profile;
@@ -71,8 +77,8 @@ public class mainFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         lstView = (ListView) rootView.findViewById(R.id.listView);
-        sndButton = (Button) rootView.findViewById(R.id.button);
         msgTxt = (EditText) rootView.findViewById(R.id.editText);
+        FloatingActionButton addGroupBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
         Messages = new ArrayList<String>();
         profile = Profile.getCurrentProfile();
@@ -81,16 +87,16 @@ public class mainFragment extends Fragment
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.list_view, Messages);
         lstView.setAdapter(adapter);
 
-        sndButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String msg = msgTxt.getText().toString();
-                Log.d(TAG, msg);
-                publish(msg);
-                Messages.add(msg);
-                adapter.notifyDataSetChanged();
-                Log.d(TAG, "Button  click with message: " + msg);
+
+        addGroupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NewGroup.class);
+                startActivity(intent);
             }
         });
+
+
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mGoogleApiClient = new GoogleApiClient.Builder(context)

@@ -52,14 +52,14 @@ public class MainActivity extends FragmentActivity{
 
         /*
             final ListView lstView = (ListView) findViewById(R.id.listView);
-            final Button sndButton = (Button) findViewById(R.id.button);
+            final Button AddGroupButton = (Button) findViewById(R.id.button);
             final EditText msgTxt = (EditText) findViewById(R.id.editText);
             Messages = new ArrayList<String>();
             Messages.add("asdfasdf");
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_view, Messages);
             lstView.setAdapter(adapter);
 
-            sndButton.setOnClickListener(new View.OnClickListener() {
+            AddGroupButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     String msg = msgTxt.getText().toString();
                     Log.d(TAG, msg);
