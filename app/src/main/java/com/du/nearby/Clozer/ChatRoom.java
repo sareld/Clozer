@@ -35,6 +35,9 @@ import java.util.List;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
+import static com.du.nearby.Clozer.MainActivity.CurrentRoom;
+import static com.du.nearby.Clozer.MainActivity.UserName;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -85,8 +88,9 @@ public class ChatRoom extends Fragment {
 
         setHasOptionsMenu(true);
 
+        isConnected = false;
         ChatApplication app = (ChatApplication) getActivity().getApplication();
-        mSocket = app.getSocket();
+        mSocket = app.getSocket(CurrentRoom);
         mSocket.on(Socket.EVENT_CONNECT,onConnect);
         mSocket.on(Socket.EVENT_DISCONNECT,onDisconnect);
         mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
@@ -98,13 +102,14 @@ public class ChatRoom extends Fragment {
         mSocket.on("stop typing", onStopTyping);
         mSocket.connect();
 
+
         startSignIn();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_chat_room, container, false);
     }
 
     @Override
@@ -133,6 +138,7 @@ public class ChatRoom extends Fragment {
         LinearLayoutManager Li = new LinearLayoutManager(getActivity());
         mMessagesView.setLayoutManager(Li);
         mMessagesView.setAdapter(mAdapter);
+        mUsername = UserName;
 
         mInputMessageView = (EditText) view.findViewById(R.id.message_input);
         mInputMessageView.setOnEditorActionListener(new TextView.OnEditorActionListener() {

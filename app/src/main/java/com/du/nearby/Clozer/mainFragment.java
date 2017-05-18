@@ -16,10 +16,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.facebook.Profile;
 import com.google.android.gms.common.ConnectionResult;
@@ -33,8 +35,8 @@ import com.google.android.gms.nearby.messages.SubscribeCallback;
 import com.google.android.gms.nearby.messages.SubscribeOptions;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import static com.du.nearby.Clozer.MainActivity.CurrentRoom;
 import static com.du.nearby.Clozer.MainActivity.UserName;
 
 
@@ -61,7 +63,6 @@ public class mainFragment extends Fragment
     EditText msgTxt;
     Context context;
     Profile profile;
-    String CurrentGroup = "null";
     FragmentTransaction ft;
 
     public mainFragment() {
@@ -83,7 +84,7 @@ public class mainFragment extends Fragment
                 Bundle res = data.getExtras();
                 String result = res.getString("result");
                 Log.d(TAG, "New Group: " + result+" by user:  " + UserName);
-                CurrentGroup = result;
+                CurrentRoom = result;
 
                 ft = getFragmentManager().beginTransaction();
                 //ft.addToBackStack("xyz");
@@ -113,6 +114,13 @@ public class mainFragment extends Fragment
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.list_view, Groups);
         lstView.setAdapter(adapter);
 
+        lstView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) lstView.getItemAtPosition(position);
+                Toast.makeText(context,"You selected : " + item,Toast.LENGTH_SHORT).show();
+            }
+        });
 
         addGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,7 +197,9 @@ public class mainFragment extends Fragment
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        publish(CurrentGroup);
+        if(CurrentRoom !="") {
+            publish(CurrentRoom);
+        }
         subscribe();
     }
 

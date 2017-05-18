@@ -8,20 +8,22 @@ import java.net.URISyntaxException;
 
 public class ChatApplication extends Application {
 
-    private Socket mSocket;
-    {
-        try {
-            IO.Options options = new IO.Options();
-            options.forceNew=true;
-            options.reconnection = false;
-            options.query = "room_var=39";
-            mSocket = IO.socket(Constants.CHAT_SERVER_URL,options);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public Socket getSocket() {
+
+    public Socket getSocket(String roomName) {
+
+        Socket mSocket;
+        {
+            try {
+                IO.Options options = new IO.Options();
+                options.forceNew=true;
+                options.reconnection = false;
+                options.query = "room_var="+roomName;
+                mSocket = IO.socket(Constants.CHAT_SERVER_URL,options);
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+        }
         return mSocket;
     }
 }

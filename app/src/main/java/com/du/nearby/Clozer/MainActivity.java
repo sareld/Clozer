@@ -22,6 +22,7 @@ public class MainActivity extends FragmentActivity {
     private static final String TAG = "nearby_test";
 
     public static String UserName;
+    public static String CurrentRoom="";
 
 
     protected void onCreate(Bundle savedInstanceState) {
