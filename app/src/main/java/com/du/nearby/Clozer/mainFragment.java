@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -61,6 +62,7 @@ public class mainFragment extends Fragment
     Context context;
     Profile profile;
     String CurrentGroup = "null";
+    FragmentTransaction ft;
 
     public mainFragment() {
         // Required empty public constructor
@@ -82,6 +84,12 @@ public class mainFragment extends Fragment
                 String result = res.getString("result");
                 Log.d(TAG, "New Group: " + result+" by user:  " + UserName);
                 CurrentGroup = result;
+
+                ft = getFragmentManager().beginTransaction();
+                //ft.addToBackStack("xyz");
+                ft.hide(mainFragment.this);
+                ft.add(android.R.id.content,new ChatRoom());
+                ft.commit();
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -111,6 +119,8 @@ public class mainFragment extends Fragment
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NewGroup.class);
                 startActivityForResult(intent,1);
+
+
             }
         });
 

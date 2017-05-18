@@ -16,7 +16,7 @@ import com.facebook.FacebookSdk;
 import java.util.List;
 
 
-public class MainActivity extends FragmentActivity{
+public class MainActivity extends FragmentActivity {
 
 
     private static final String TAG = "nearby_test";
@@ -30,12 +30,12 @@ public class MainActivity extends FragmentActivity{
 
         Profile profile = Profile.getCurrentProfile();
 
-        Log.d(TAG, "setContentView" );
+        Log.d(TAG, "setContentView");
 
-            BlankFragment blankFragment= new BlankFragment();
+        BlankFragment blankFragment = new BlankFragment();
 
-            getSupportFragmentManager().beginTransaction()
-                    .add(android.R.id.content, blankFragment).commit();
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, blankFragment).commit();
 
         /*
             final ListView lstView = (ListView) findViewById(R.id.listView);
@@ -92,7 +92,6 @@ public class MainActivity extends FragmentActivity{
 
 
     }
-
-
 }
+
 
