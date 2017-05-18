@@ -34,6 +34,8 @@ import com.google.android.gms.nearby.messages.SubscribeOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.du.nearby.Clozer.MainActivity.UserName;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,7 +80,7 @@ public class mainFragment extends Fragment
             if(resultCode == Activity.RESULT_OK){
                 Bundle res = data.getExtras();
                 String result = res.getString("result");
-                Log.d(TAG, "New Group: " + result);
+                Log.d(TAG, "New Group: " + result+" by user:  " + UserName);
                 CurrentGroup = result;
 
             }

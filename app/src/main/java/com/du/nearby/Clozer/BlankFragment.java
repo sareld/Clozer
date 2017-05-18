@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.du.nearby.Clozer.R;
 
+import static com.du.nearby.Clozer.MainActivity.UserName;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -92,6 +93,7 @@ public class BlankFragment extends Fragment {
                 }
                 else
                 {
+                    UserName = name.getText().toString();
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.hide(BlankFragment.this);
                     ft.add(android.R.id.content,new mainFragment());

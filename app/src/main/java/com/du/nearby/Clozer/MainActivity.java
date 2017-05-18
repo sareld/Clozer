@@ -20,14 +20,8 @@ public class MainActivity extends FragmentActivity{
 
 
     private static final String TAG = "nearby_test";
-    GoogleApiClient mGoogleApiClient;
-    Message mActiveMessage;
-    MessageListener mMessageListener;
-    List<String> Messages;
-    Adapter adapter;
 
-    private mainFragment mainFragment;
-    private loginFragment loginFragment;
+    public static String UserName;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +89,7 @@ public class MainActivity extends FragmentActivity{
                 }
             };
             Log.i(TAG, "Finished create ");*/
-        }
+
 
     }
 
