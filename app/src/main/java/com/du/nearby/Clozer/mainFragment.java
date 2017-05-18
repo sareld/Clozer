@@ -1,6 +1,7 @@
 package com.du.nearby.Clozer;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -34,8 +34,6 @@ import com.google.android.gms.nearby.messages.SubscribeOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.attr.value;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +50,7 @@ public class mainFragment extends Fragment
     GoogleApiClient mGoogleApiClient;
     Message mActiveMessage;
     MessageListener mMessageListener;
-    List<String> Messages;
+    ArrayList<String> Groups;
 
 
     ListView lstView;
@@ -60,6 +58,7 @@ public class mainFragment extends Fragment
     EditText msgTxt;
     Context context;
     Profile profile;
+    String CurrentGroup = "null";
 
     public mainFragment() {
         // Required empty public constructor
@@ -73,6 +72,23 @@ public class mainFragment extends Fragment
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Bundle res = data.getExtras();
+                String result = res.getString("result");
+                Log.d(TAG, "New Group: " + result);
+                CurrentGroup = result;
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -80,11 +96,11 @@ public class mainFragment extends Fragment
         msgTxt = (EditText) rootView.findViewById(R.id.editText);
         FloatingActionButton addGroupBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
-        Messages = new ArrayList<String>();
+        Groups = new ArrayList<String>();
         profile = Profile.getCurrentProfile();
 
-        //Messages.add(profile.getName());
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.list_view, Messages);
+        //Groups.add(profile.getName());
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.list_view, Groups);
         lstView.setAdapter(adapter);
 
 
@@ -92,7 +108,7 @@ public class mainFragment extends Fragment
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NewGroup.class);
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
 
@@ -119,13 +135,19 @@ public class mainFragment extends Fragment
             public void onFound(Message message) {
                 String messageAsString = new String(message.getContent());
                 Log.d(TAG, "Found message: " + messageAsString);
-                Messages.add(messageAsString);
-                adapter.notifyDataSetChanged();
+                if(!Groups.contains(messageAsString)) {
+                    Groups.add(messageAsString);
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override
             public void onLost(Message message) {
                 String messageAsString = new String(message.getContent());
+                if(Groups.contains(messageAsString)) {
+                    Groups.remove(Groups.indexOf(messageAsString));
+                    adapter.notifyDataSetChanged();
+                }
                 Log.d(TAG, "Lost sight of message: " + messageAsString);
             }
         };
@@ -155,7 +177,7 @@ public class mainFragment extends Fragment
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        publish(profile.getName());
+        publish(CurrentGroup);
         subscribe();
     }
 

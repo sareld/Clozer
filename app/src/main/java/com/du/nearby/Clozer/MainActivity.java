@@ -36,14 +36,7 @@ public class MainActivity extends FragmentActivity{
 
         Profile profile = Profile.getCurrentProfile();
 
-        if(profile != null) {
-
-            mainFragment = new mainFragment();
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(android.R.id.content, mainFragment).commit();
-        }else {
-            Log.d(TAG, "setContentView" );
+        Log.d(TAG, "setContentView" );
 
             BlankFragment blankFragment= new BlankFragment();
 

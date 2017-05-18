@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">nearbytest</string>
+    <string name="app_name">Clozer</string>
     <string name="facebook_app_id">1093908334010408</string>
     <string name="fb_login_protocol_scheme">fb1093908334010408</string>
     <string name="title_activity_login">Sign in</string>
