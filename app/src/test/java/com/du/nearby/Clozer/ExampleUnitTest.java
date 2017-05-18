@@ -1,4 +1,4 @@
-package com.du.nearby.nearbytest;
+package com.du.nearby.Clozer;
 
 import org.junit.Test;
 

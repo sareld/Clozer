@@ -1,4 +1,4 @@
-package com.du.nearby.nearbytest;
+package com.du.nearby.Clozer;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

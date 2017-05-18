@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.du.nearby.nearbytest">
+    package="com.du.nearby.Clozer">
 
     <!-- To auto-complete the email text field in the loginFragment form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -23,7 +23,7 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.du.nearby.Clozer.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
