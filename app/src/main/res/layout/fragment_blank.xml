@@ -21,7 +21,6 @@
             android:ems="10"
             android:hint="enter user name"
             android:inputType="textPersonName"
-            android:text="enter user name"
             android:textAlignment="center" />
 
         <Button

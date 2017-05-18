@@ -4,13 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.du.nearby.Clozer.R;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,13 +75,28 @@ public class BlankFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_blank, container, false);
-        EditText name = (EditText) view.findViewById(R.id.editText_name);
+        final EditText name = (EditText) view.findViewById(R.id.editText_name);
         final Button startButton = (Button) view.findViewById(R.id.button_start);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startButton.setText("aaa");
+                if(name.getText().toString().equals(""))
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "you didn't enter a name!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else
+                {
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.hide(BlankFragment.this);
+                    ft.add(android.R.id.content,new mainFragment());
+                    ft.commit();
+                }
             }
         });
         return  view;
