@@ -8,8 +8,6 @@ import java.net.URISyntaxException;
 
 public class ChatApplication extends Application {
 
-
-
     public Socket getSocket(String roomName) {
 
         Socket mSocket;

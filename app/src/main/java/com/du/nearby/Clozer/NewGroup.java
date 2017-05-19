@@ -2,6 +2,7 @@ package com.du.nearby.Clozer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,10 @@ public class NewGroup extends AppCompatActivity {
 
         final Button CreateBtn = (Button)findViewById(R.id.button2);
         final EditText GroupNameEdit = (EditText) findViewById(R.id.editText2);
+
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/UniversLTStd-Black.ttf");
+        GroupNameEdit.setTypeface(custom_font);
+
 
         CreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
