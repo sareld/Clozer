@@ -16,5 +16,7 @@
     <color name="username9">#3824aa</color>
     <color name="username10">#a700ff</color>
     <color name="username11">#d300e7</color>
+    <color name="background_color">#3a3335</color>
+    <color name="bubble_color">#fdf0d5</color>
 
 </resources>
