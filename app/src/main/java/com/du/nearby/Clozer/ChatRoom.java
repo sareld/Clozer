@@ -26,9 +26,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +42,11 @@ import static com.du.nearby.Clozer.MainActivity.UserName;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
+ * Activities that contain this fragment_users must implement the
  * {@link ChatRoom.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link ChatRoom#newInstance} factory method to
- * create an instance of this fragment.
+ * create an instance of this fragment_users.
  */
 public class ChatRoom extends Fragment {
     private static final String TAG = "ChatRoom";
@@ -56,6 +58,7 @@ public class ChatRoom extends Fragment {
     private RecyclerView mMessagesView;
     private EditText mInputMessageView;
     private List<Message> mMessages = new ArrayList<Message>();
+    public ArrayList<String> Users = new ArrayList<String>();
     private RecyclerView.Adapter mAdapter;
     private boolean mTyping = false;
     private Handler mTypingHandler = new Handler();
@@ -69,7 +72,7 @@ public class ChatRoom extends Fragment {
     }
 
 
-    // This event fires 1st, before creation of fragment or any views
+    // This event fires 1st, before creation of fragment_users or any views
     // The onAttach method is called when the Fragment instance is associated with an Activity.
     // This does not mean the Activity is fully initialized.
     @Override
@@ -141,6 +144,8 @@ public class ChatRoom extends Fragment {
         mMessagesView.setAdapter(mAdapter);
         mUsername = UserName;
         title.setText(CurrentRoom);
+
+
 
 
         mInputMessageView = (EditText) view.findViewById(R.id.message_input);
@@ -280,7 +285,7 @@ public class ChatRoom extends Fragment {
 
     private void startSignIn() {
         mUsername = null;
-        //todo: return to group fragment
+        //todo: return to group fragment_users
     }
 
     private void leave() {
@@ -374,9 +379,17 @@ public class ChatRoom extends Fragment {
                     JSONObject data = (JSONObject) args[0];
                     String username;
                     int numUsers;
+                    JSONArray Jusers;
+
                     try {
                         username = data.getString("username");
                         numUsers = data.getInt("numUsers");
+                        Jusers = data.getJSONArray("users");
+                        Users.clear();
+                        for(int i=0;i<Jusers.length();i++)
+                            Users.add(Jusers.getString(i));
+
+
                     } catch (JSONException e) {
                         Log.e(TAG, e.getMessage());
                         return;

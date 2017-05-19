@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.du.nearby.Clozer.BlankFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragment_users layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,6 @@
             android:inputType="textPersonName"
             android:shadowColor="@color/bubble_color"
             android:textAlignment="center"
-            android:paddingTop="180dp"
             android:textColor="@color/bubble_color"
             android:textColorHighlight="@color/bubble_color"
             android:textColorHint="@color/bubble_color"

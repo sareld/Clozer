@@ -22,11 +22,11 @@ import com.facebook.login.widget.LoginButton;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
+ * Activities that contain this fragment_users must implement the
  * {@link loginFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link loginFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * create an instance of this fragment_users.
  */
 public class loginFragment extends Fragment {
 
@@ -63,7 +63,7 @@ public class loginFragment extends Fragment {
 
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
-        // If using in a fragment
+        // If using in a fragment_users
         loginButton.setFragment(this);
         // Other app specific specialization
 

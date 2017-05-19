@@ -60,7 +60,6 @@ public class mainFragment extends Fragment
 
     ListView lstView;
     Button AddGroupButton;
-    EditText msgTxt;
     Context context;
     Profile profile;
     FragmentTransaction ft;
@@ -104,7 +103,6 @@ public class mainFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         lstView = (ListView) rootView.findViewById(R.id.listView);
-        msgTxt = (EditText) rootView.findViewById(R.id.editText);
         FloatingActionButton addGroupBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
         Groups = new ArrayList<String>();
@@ -118,7 +116,15 @@ public class mainFragment extends Fragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) lstView.getItemAtPosition(position);
-                Toast.makeText(context,"You selected : " + item,Toast.LENGTH_SHORT).show();
+
+                CurrentRoom = item;
+                publish(CurrentRoom);
+                ft = getFragmentManager().beginTransaction();
+                //ft.addToBackStack("xyz");
+                ft.hide(mainFragment.this);
+                ft.add(android.R.id.content,new ChatRoom());
+                ft.commit();
+
             }
         });
 

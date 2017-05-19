@@ -6,15 +6,16 @@
     android:orientation="vertical"
     android:background="@color/background_color"
     tools:context=".ChatRoom">
+
     <TextView
         android:id="@+id/title"
+        android:layout_width="match_parent"
         style="?android:textAppearanceMedium"
         android:textColor="@color/bubble_color"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:textStyle="bold"
-        android:gravity=""
+        android:gravity="center"
         />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/messages"
@@ -44,6 +45,11 @@
             android:imeOptions="actionSend"
             android:inputType="text"
             android:maxLines="1"
+            android:textColor="#fdf0d5"
+            android:shadowColor="#fdf0d5"
+            android:textColorHint="#fdf0d5"
+            android:textColorLink="#fdf0d5"
+            android:textColorHighlight="#fdf0d5"
             android:singleLine="true"/>
         <ImageButton
             android:id="@+id/send_button"

@@ -8,38 +8,43 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#3a3335"
     tools:context="com.du.nearby.Clozer.NewGroup">
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Group Name"
+        android:hint="Add Group name"
+        android:gravity="center"
+        android:textColor="#fdf0d5"
+        android:shadowColor="#fdf0d5"
+        android:textColorHint="#fdf0d5"
+        android:textColorLink="#fdf0d5"
+        android:textColorHighlight="#fdf0d5"
         android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="53dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="139dp"
-        android:id="@+id/editText2" />
+        android:id="@+id/editText2"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
 
     <TextView
-        android:text="Add New Group"
+        android:text="New Group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#fdf0d5"
+        android:id="@+id/textView2"
+        android:layout_marginTop="80dp"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_marginTop="50dp"
-        android:id="@+id/textView2" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:id="@+id/button2" />
+        android:id="@+id/button2"
+        android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp" />
+    android:layout_alignEnd="@+id/textView2" />
 </RelativeLayout>
