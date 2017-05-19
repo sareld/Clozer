@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.Profile;
@@ -104,6 +107,10 @@ public class mainFragment extends Fragment
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         lstView = (ListView) rootView.findViewById(R.id.listView);
         FloatingActionButton addGroupBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
+
+        TextView title = (TextView) rootView.findViewById(R.id.title_rooms);
+        Typeface custom_font = Typeface.createFromAsset(context.getAssets(),"fonts/ForoMedium.ttf");
+        title.setTypeface(custom_font);
 
         Groups = new ArrayList<String>();
         profile = Profile.getCurrentProfile();

@@ -19,5 +19,5 @@
     <color name="background_color">#3a3335</color>
     <color name="background_color2">#FBF5F3</color>
     <color name="bubble_color">#fdf0d5</color>
-
+    <color name="rooms_color">#fefaec</color>
 </resources>

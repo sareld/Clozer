@@ -138,7 +138,7 @@ public class ChatRoom extends Fragment {
 
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         TextView title = (TextView) view.findViewById(R.id.title);
-        Typeface custom_font = Typeface.createFromAsset(context.getAssets(),"fonts/ForoMediumItalic.ttf");
+        Typeface custom_font = Typeface.createFromAsset(context.getAssets(),"fonts/ForoMedium.ttf");
         title.setTypeface(custom_font);
 
         FragmentActivity Ac = getActivity();
