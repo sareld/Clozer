@@ -134,11 +134,14 @@ public class ChatRoom extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
+        TextView title = (TextView) view.findViewById(R.id.title);
         FragmentActivity Ac = getActivity();
         LinearLayoutManager Li = new LinearLayoutManager(getActivity());
         mMessagesView.setLayoutManager(Li);
         mMessagesView.setAdapter(mAdapter);
         mUsername = UserName;
+        title.setText(CurrentRoom);
+
 
         mInputMessageView = (EditText) view.findViewById(R.id.message_input);
         mInputMessageView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
