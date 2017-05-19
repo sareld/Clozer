@@ -3,6 +3,7 @@ package com.du.nearby.Clozer;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -66,6 +67,7 @@ public class ChatRoom extends Fragment {
     private Socket mSocket;
 
     private Boolean isConnected = true;
+    Context context;
 
     public ChatRoom() {
         super();
@@ -79,9 +81,7 @@ public class ChatRoom extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mAdapter = new MessageAdapter(context, mMessages);
-        if (context instanceof Activity){
-            //this.listener = (MainActivity) context;
-        }
+        this.context = context;
     }
 
 
@@ -138,6 +138,9 @@ public class ChatRoom extends Fragment {
 
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         TextView title = (TextView) view.findViewById(R.id.title);
+        Typeface custom_font = Typeface.createFromAsset(context.getAssets(),"fonts/ForoMediumItalic.ttf");
+        title.setTypeface(custom_font);
+
         FragmentActivity Ac = getActivity();
         LinearLayoutManager Li = new LinearLayoutManager(getActivity());
         mMessagesView.setLayoutManager(Li);
