@@ -96,7 +96,7 @@ public class BlankFragment extends Fragment {
                     UserName = name.getText().toString();
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.hide(BlankFragment.this);
-                    ft.add(android.R.id.content,new mainFragment());
+                    ft.replace(android.R.id.content,new mainFragment());
                     ft.commit();
                 }
             }
